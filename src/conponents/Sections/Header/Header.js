@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import Banner from "../Banner/Banner";
 
 const Headers = () => {
   const [toggle, setToggle] = useState(true);

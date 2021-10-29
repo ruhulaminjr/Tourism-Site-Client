@@ -1,12 +1,10 @@
 import axios from "axios";
-import { Result } from "postcss";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
-import useStorage from "../../../hooks/usStorage";
 
 const AddDestination = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [error, setError] = useState(null);
   const types = ["image/png", "image/jpeg"];
   const { storage, ref, uploadBytesResumable, getDownloadURL } = useAuth();
@@ -36,7 +34,10 @@ const AddDestination = () => {
             axios
               .post("http://localhost:5000/get-destination", info)
               .then((Result) => {
-                console.log(Result);
+                if (Result.data.acknowledged) {
+                  console.log("Succes Fully D");
+                  reset();
+                }
               });
           });
         }
