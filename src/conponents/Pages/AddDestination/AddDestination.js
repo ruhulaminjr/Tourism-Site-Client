@@ -62,6 +62,11 @@ const AddDestination = () => {
             className=" focus:outline-none w-3/4 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
           />
           <input
+            {...register("Desc")}
+            placeholder="Short Description"
+            className=" focus:outline-none w-3/4 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
+          />
+          <input
             {...register("Title")}
             placeholder="Title"
             type="text"

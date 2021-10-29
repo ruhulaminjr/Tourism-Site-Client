@@ -41,26 +41,30 @@ const Headers = () => {
               </div>
 
               {/* <!-- primary nav --> */}
-              <div className="hidden md:flex items-center space-x-1">
-                <NavLink
-                  to="/add-destination"
-                  className="py-5 px-3 text-gray-700 hover:text-gray-900"
-                >
-                  Add Destination
-                </NavLink>
-                <NavLink
-                  to="/manage-movie"
-                  className="py-5 px-3 text-gray-700 hover:text-gray-900"
-                >
-                  Manage All Orders
-                </NavLink>
-                <NavLink
-                  to="/carts"
-                  className="py-5 px-3 text-gray-700 hover:text-gray-900"
-                >
-                  My Orders
-                </NavLink>
-              </div>
+              {user ? (
+                <div className="hidden md:flex items-center space-x-1">
+                  <NavLink
+                    to="/add-destination"
+                    className="py-5 px-3 text-gray-700 hover:text-gray-900"
+                  >
+                    Add Destination
+                  </NavLink>
+                  <NavLink
+                    to="/manage-orders"
+                    className="py-5 px-3 text-gray-700 hover:text-gray-900"
+                  >
+                    Manage All Orders
+                  </NavLink>
+                  <NavLink
+                    to="/carts"
+                    className="py-5 px-3 text-gray-700 hover:text-gray-900"
+                  >
+                    My Orders
+                  </NavLink>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
 
             {/* <!-- secondary nav --> */}
@@ -147,7 +151,7 @@ const Headers = () => {
             My Orders
           </NavLink>
           <NavLink
-            to="/manage-movie"
+            to="/manage-orders"
             className="block py-2 px-3 text-gray-700 hover:text-gray-900"
           >
             Manage All Orders

@@ -1,11 +1,17 @@
 import React from "react";
+import { useHistory, useLocation } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 
 const Login = () => {
   const { signInWithGoogle } = useAuth();
+  const location = useLocation();
+  const history = useHistory();
+  console.log(location);
+  const redirectUrl = location.state?.from.pathname || "/";
+  console.log(redirectUrl);
   const loginHandler = () => {
     signInWithGoogle().then((result) => {
-      console.log(result.user);
+      history.push(redirectUrl);
     });
   };
   return (
@@ -30,7 +36,6 @@ const Login = () => {
                     border-2 border-white
                     shadow-md
                     rounded-xl
-               
                   "
         >
           <div className="flex items-center justify-center">

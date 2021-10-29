@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 
 const BookTour = () => {
@@ -9,12 +9,13 @@ const BookTour = () => {
   const { register, handleSubmit } = useForm();
   const { id } = useParams();
   const { user } = useAuth();
+  const history = useHistory();
   const onSubmit = (info) => {
     info.book = booking;
     info.status = "pending";
     axios.post("http://localhost:5000/savebooking", info).then((result) => {
       if (result.data.acknowledged) {
-        console.log("booking Success");
+        history.push("/carts");
       }
     });
   };
@@ -46,6 +47,18 @@ const BookTour = () => {
             placeholder="Your Name"
             type="text"
             defaultValue={user.displayName}
+            className=" focus:outline-none w-3/4 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
+          />
+          <input
+            {...register("Address")}
+            placeholder="Your Address"
+            type="text"
+            className=" focus:outline-none w-3/4 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
+          />
+          <input
+            {...register("Phone")}
+            placeholder="Contact Number"
+            type="text"
             className=" focus:outline-none w-3/4 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
           />
           <span className=" focus:outline-none w-3/4 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4">

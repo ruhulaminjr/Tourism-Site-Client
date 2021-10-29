@@ -2,14 +2,22 @@ import axios from "axios";
 import { Result } from "postcss";
 import React from "react";
 
-const Cart = ({ item }) => {
+const Cart = ({ item, setRender, render }) => {
   const { Title, img } = item.book;
   const removeCartHandler = () => {
-    axios
-      .delete(`http://localhost:5000/cartDelete${item._id}`, { id: item._id })
-      .then((Result) => {
-        console.log(Result.data);
-      });
+    const confirm = window.confirm("Are You Sure Want To Delete");
+    if (confirm) {
+      axios
+        .delete(`http://localhost:5000/cartDelete/${item._id}`, {
+          email: item.Email,
+        })
+        .then((Result) => {
+          if (Result.data.acknowledged) {
+            setRender(!render);
+            alert("Your Cart Item Deleted Successfully");
+          }
+        });
+    }
   };
   return (
     <div className="w-full lg:w-3/4 p-2">
