@@ -12,6 +12,7 @@ const MyCart = () => {
     axios.get(`http://localhost:5000/carts/${user.email}`).then((Result) => {
       setCarts(Result.data);
     });
+    // eslint-disable-next-line
   }, [render]);
   return (
     <div className="container mx-auto mt-8">

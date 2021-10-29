@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Result } from "postcss";
 import React from "react";
 
 const Cart = ({ item, setRender, render }) => {

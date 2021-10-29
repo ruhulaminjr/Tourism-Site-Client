@@ -51,7 +51,7 @@ const AddDestination = () => {
       <div className="container mx-auto mt-16 flex items-center justify-center h-full flex-col gap-5">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="w-1/2 flex flex-col gap-5 bg-white justify-center justify-center items-center py-8 rounded"
+          className="w-full wlg:w-1/2 flex flex-col gap-5 bg-white justify-center justify-center items-center py-8 rounded"
         >
           <h1 className="lg:text-4xl text-lg text-center font-bold text-gray-700">
             Love where you're going
@@ -59,40 +59,40 @@ const AddDestination = () => {
           <input
             {...register("Location")}
             placeholder="Travel Location"
-            className=" focus:outline-none w-3/4 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
+            className=" focus:outline-none w-4/5 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
           />
           <input
             {...register("Desc")}
             placeholder="Short Description"
-            className=" focus:outline-none w-3/4 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
+            className=" focus:outline-none w-4/5 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
           />
           <input
             {...register("Title")}
             placeholder="Title"
             type="text"
-            className=" focus:outline-none w-3/4 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
+            className=" focus:outline-none w-4/5 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
           />
           <input
             {...register("Duration")}
             placeholder="How long do you want to travel?"
             type="number"
-            className=" focus:outline-none w-3/4 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
+            className=" focus:outline-none w-4/5 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
           />
           <input
             {...register("Price")}
             placeholder="How Much Cost?"
             type="number"
-            className=" focus:outline-none w-3/4 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
+            className=" focus:outline-none w-4/5 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
           />
           <input
             {...register("Img")}
             placeholder="choose travel images "
             type="file"
             required
-            className=" focus:outline-none w-3/4 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
+            className=" focus:outline-none w-4/5 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
           />
           <span>{error && error}</span>
-          <button className="w-3/4 py-4 px-4 text-white rounded bg-yellow-400 hover:bg-yellow-300 text-yellow-900 hover:text-yellow-800">
+          <button className="w-3/4 py-4 px-4 text-white rounded bg-green-400 hover:bg-green-500 text-white">
             Add New Destination
           </button>
         </form>
