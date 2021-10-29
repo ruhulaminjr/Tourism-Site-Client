@@ -6,6 +6,13 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+
 import FirebaseInit from "../firebase/firebase.init";
 
 FirebaseInit();
@@ -15,6 +22,7 @@ const useFirebase = () => {
   const [loading, setLoading] = useState(true);
   // variable
   const auth = getAuth();
+  const storage = getStorage();
   const googleProvider = new GoogleAuthProvider();
   //   function
   const logOut = () => {
@@ -36,7 +44,16 @@ const useFirebase = () => {
     });
     return () => unsubscribe;
   }, []);
-  return { user, loading, signInWithGoogle, logOut };
+  return {
+    user,
+    loading,
+    signInWithGoogle,
+    logOut,
+    storage,
+    ref,
+    uploadBytesResumable,
+    getDownloadURL,
+  };
 };
 
 export default useFirebase;
