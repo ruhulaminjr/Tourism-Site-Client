@@ -55,7 +55,7 @@ const Headers = () => {
                   Manage All Orders
                 </NavLink>
                 <NavLink
-                  to="/manage-movie"
+                  to="/carts"
                   className="py-5 px-3 text-gray-700 hover:text-gray-900"
                 >
                   My Orders
@@ -141,7 +141,7 @@ const Headers = () => {
             </NavLink>
           )}
           <NavLink
-            to="/add-movie"
+            to="/carts"
             className="block py-2 px-3 text-gray-700 hover:text-gray-900"
           >
             My Orders

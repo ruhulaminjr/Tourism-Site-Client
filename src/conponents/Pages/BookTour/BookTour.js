@@ -6,11 +6,12 @@ import useAuth from "../../../hooks/useAuth";
 
 const BookTour = () => {
   const [booking, setBooking] = useState({});
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   const { id } = useParams();
   const { user } = useAuth();
   const onSubmit = (info) => {
     info.book = booking;
+    info.status = "pending";
     axios.post("http://localhost:5000/savebooking", info).then((result) => {
       if (result.data.acknowledged) {
         console.log("booking Success");
