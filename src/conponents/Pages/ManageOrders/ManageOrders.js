@@ -1,14 +1,18 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import useDocumentTitle from "../../../hooks/useTitle";
 import Manage from "./Manage";
 
 const ManageOrders = () => {
   const [orders, setOrders] = useState([]);
   const [render,setRender] = useState(false)
+  useDocumentTitle("Manage Your Orders");
   useEffect(() => {
-    axios.get("http://localhost:5000/allOrders").then((Result) => {
-      setOrders(Result.data);
-    });
+    axios
+      .get("https://blooming-hollows-44421.herokuapp.com/allOrders")
+      .then((Result) => {
+        setOrders(Result.data);
+      });
   }, [render]);
   return (
     <div className="container mx-auto">

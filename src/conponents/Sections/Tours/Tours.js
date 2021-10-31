@@ -7,10 +7,12 @@ const Tours = () => {
   const [isloading, setIsLoading] = useState(true);
   useEffect(() => {
     setIsLoading(true);
-    axios.get("http://localhost:5000/get-tours").then((result) => {
-      setData(result.data);
-      setIsLoading(false);
-    });
+    axios
+      .get("https://blooming-hollows-44421.herokuapp.com/get-tours")
+      .then((result) => {
+        setData(result.data);
+        setIsLoading(false);
+      });
   }, []);
   return (
     <div className="container mx-auto py-8">

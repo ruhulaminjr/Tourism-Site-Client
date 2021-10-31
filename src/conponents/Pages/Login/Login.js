@@ -1,12 +1,13 @@
 import React from "react";
 import { useHistory, useLocation } from "react-router";
 import useAuth from "../../../hooks/useAuth";
+import useDocumentTitle from "../../../hooks/useTitle";
 
 const Login = () => {
   const { signInWithGoogle } = useAuth();
   const location = useLocation();
   const history = useHistory();
-  console.log(location);
+  useDocumentTitle("Login With Google");
   const redirectUrl = location.state?.from.pathname || "/";
   console.log(redirectUrl);
   const loginHandler = () => {

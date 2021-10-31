@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router";
 import useAuth from "../../../hooks/useAuth";
+import useDocumentTitle from "../../../hooks/useTitle";
 
 const AddDestination = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -11,6 +12,7 @@ const AddDestination = () => {
   const types = ["image/png", "image/jpeg"];
   const { storage, ref, uploadBytesResumable, getDownloadURL } = useAuth();
   const history = useHistory();
+  useDocumentTitle("Add a New Destination");
   const onSubmit = (info) => {
     const imgFile = info.Img[0];
     if (imgFile && types.includes(imgFile.type)) {
@@ -32,11 +34,14 @@ const AddDestination = () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             info.img = downloadURL;
             axios
-              .post("http://localhost:5000/get-destination", info)
+              .post(
+                "https://blooming-hollows-44421.herokuapp.com/get-destination",
+                info
+              )
               .then((Result) => {
                 if (Result.data.acknowledged) {
                   reset();
-                  history.push('/');
+                  history.push("/");
                 }
               });
           });

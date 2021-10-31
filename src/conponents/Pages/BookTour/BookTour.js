@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory, useParams } from "react-router";
 import useAuth from "../../../hooks/useAuth";
+import useDocumentTitle from "../../../hooks/useTitle";
 
 const BookTour = () => {
   const [booking, setBooking] = useState({});
@@ -10,17 +11,20 @@ const BookTour = () => {
   const { id } = useParams();
   const { user } = useAuth();
   const history = useHistory();
+  useDocumentTitle("Book Your Tour");
   const onSubmit = (info) => {
     info.book = booking;
     info.status = "pending";
-    axios.post("http://localhost:5000/savebooking", info).then((result) => {
-      if (result.data.acknowledged) {
-        history.push("/carts");
-      }
-    });
+    axios
+      .post("https://blooming-hollows-44421.herokuapp.com/savebooking", info)
+      .then((result) => {
+        if (result.data.acknowledged) {
+          history.push("/carts");
+        }
+      });
   };
   useEffect(() => {
-    const url = `http://localhost:5000/booking/${id}`;
+    const url = `https://blooming-hollows-44421.herokuapp.com/booking/${id}`;
     axios.get(url).then((result) => {
       setBooking(result.data);
     });

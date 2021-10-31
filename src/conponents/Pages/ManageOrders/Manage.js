@@ -7,9 +7,12 @@ const Manage = ({ order, render, setRender }) => {
     const confirm = window.confirm("Are You Sure Want To Delete");
     if (confirm) {
       axios
-        .delete(`http://localhost:5000/cartDelete/${order._id}`, {
-          email: order.Email,
-        })
+        .delete(
+          `https://blooming-hollows-44421.herokuapp.com/cartDelete/${order._id}`,
+          {
+            email: order.Email,
+          }
+        )
         .then((Result) => {
           if (Result.data.acknowledged) {
             setRender(!render);
@@ -19,7 +22,7 @@ const Manage = ({ order, render, setRender }) => {
     }
   };
   const approveHandler = (approved) => {
-    const url = `http://localhost:5000/update-status/${order._id}`;
+    const url = `https://blooming-hollows-44421.herokuapp.com/update-status/${order._id}`;
     if (approved) {
       axios.put(url, { status: "approved" }).then((result) => {
         setRender(!render);

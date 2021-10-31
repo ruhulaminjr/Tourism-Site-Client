@@ -7,7 +7,7 @@ const Cart = ({ item, setRender, render }) => {
     const confirm = window.confirm("Are You Sure Want To Delete");
     if (confirm) {
       axios
-        .delete(`http://localhost:5000/cartDelete/${item._id}`, {
+        .delete(`https://blooming-hollows-44421.herokuapp.com/${item._id}`, {
           email: item.Email,
         })
         .then((Result) => {
