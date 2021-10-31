@@ -5,7 +5,20 @@ import useAuth from "../hooks/useAuth";
 const PrivateRoute = ({ children, ...rest }) => {
   const { user, loading } = useAuth();
   if (loading) {
-    return <h1>Loading</h1>;
+    return (
+      <div className="flex justify-center items-center">
+        <div
+          className="
+      loader
+      ease-linear
+      rounded-full
+      border-8 border-t-8 border-gray-200
+      h-32
+      w-32
+    "
+        ></div>
+      </div>
+    );
   }
   return (
     <Route

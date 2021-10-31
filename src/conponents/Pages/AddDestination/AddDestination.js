@@ -1,42 +1,42 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 
 const AddDestination = () => {
   const { register, handleSubmit, reset } = useForm();
   const [error, setError] = useState(null);
+  const [progress, setProgress] = useState(null);
   const types = ["image/png", "image/jpeg"];
   const { storage, ref, uploadBytesResumable, getDownloadURL } = useAuth();
+  const history = useHistory();
   const onSubmit = (info) => {
     const imgFile = info.Img[0];
     if (imgFile && types.includes(imgFile.type)) {
-      setError("you Can Now Upload Image");
       const newImage = ref(storage, imgFile.name);
       const uploadTask = uploadBytesResumable(newImage, imgFile);
       uploadTask.on(
         "state_changed",
         (snapshot) => {
           // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          const progress =
+          const progressx =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log(progress);
+          setProgress(progressx);
         },
         (error) => {
-          setError("something Went Wrong");
+          setError("Something Went wrong");
         },
         () => {
           // Upload completed successfully, now we can get the download URL
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("File available at", downloadURL);
             info.img = downloadURL;
-            console.log(info);
             axios
               .post("http://localhost:5000/get-destination", info)
               .then((Result) => {
                 if (Result.data.acknowledged) {
-                  console.log("Succes Fully D");
                   reset();
+                  history.push('/');
                 }
               });
           });
@@ -91,6 +91,16 @@ const AddDestination = () => {
             required
             className=" focus:outline-none w-4/5 text-sm text-black placeholder-gray-500  border-b border-gray-800 py-4"
           />
+          {progress && (
+            <span
+              style={{
+                width: `${progress}%`,
+                height: "3px",
+                background: "orange",
+              }}
+            ></span>
+          )}
+
           <span>{error && error}</span>
           <button className="w-3/4 py-4 px-4 text-white rounded bg-green-400 hover:bg-green-500 text-white">
             Add New Destination

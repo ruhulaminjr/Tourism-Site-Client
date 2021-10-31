@@ -2,7 +2,6 @@ import axios from "axios";
 import React from "react";
 
 const Manage = ({ order, render, setRender }) => {
-  console.log(order);
   const { Location, img } = order.book;
   const removeCartHandler = () => {
     const confirm = window.confirm("Are You Sure Want To Delete");
